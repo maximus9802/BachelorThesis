@@ -80,13 +80,14 @@ CREATE TABLE IF NOT EXISTS `locations` (
     `company_id`            BIGINT          NOT NULL,
     `name`                  VARCHAR(50)     NOT NULL,
     `address`               VARCHAR(50)     NOT NULL,
+    `is_deleted`            BOOLEAN         NOT NULL DEFAULT FALSE,
 
     PRIMARY KEY (`id`),
 
     INDEX (`company_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_bin;
 
-CREATE TABLE IF NOT EXISTS `camera` (
+CREATE TABLE IF NOT EXISTS `cameras` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
     `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
