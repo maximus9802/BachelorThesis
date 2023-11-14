@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `authentication_type` (
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_bin;
 
-CREATE TABLE IF NOT EXISTS `authentication_log` (
+CREATE TABLE IF NOT EXISTS `authentication_logs` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
     `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
