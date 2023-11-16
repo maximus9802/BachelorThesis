@@ -1,9 +1,6 @@
 package com.quyvx.main_server.infrastructure.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +15,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @Table(name = "manager_location")
 public class ManagerLocationEntity extends BaseEntity{
+    @Column(insertable = false, updatable = false)
     private Long managerId;
     private Long locationId;
 
