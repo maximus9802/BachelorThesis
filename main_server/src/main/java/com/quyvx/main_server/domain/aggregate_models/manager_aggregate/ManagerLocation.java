@@ -4,13 +4,9 @@ import com.quyvx.main_server.domain.aggregate_models.EntityAggregateRoot;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
-import java.util.List;
-
 @SuperBuilder
 @Getter
-public class Manager extends EntityAggregateRoot {
-    private Long identityId;
-    private Boolean isDeleted;
-
-    private List<ManagerLocation> managerLocations;
+public class ManagerLocation extends EntityAggregateRoot {
+    private Long managerId;
+    private Long locationId;
 }

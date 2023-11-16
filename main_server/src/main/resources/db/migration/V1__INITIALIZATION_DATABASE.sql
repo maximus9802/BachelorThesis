@@ -48,9 +48,7 @@ CREATE TABLE IF NOT EXISTS `managers` (
     `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    `location_id`           BIGINT          NOT NULL,
     `identity_id`           BIGINT          NOT NULL,
-    `role_id`               BIGINT          NOT NULL,
     `is_deleted`            BOOLEAN         NOT NULL DEFAULT FALSE,
 
     PRIMARY KEY (`id`),
