@@ -25,6 +25,17 @@ CREATE TABLE IF NOT EXISTS `identities` (
     INDEX (`login_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_bin;
 
+CREATE TABLE IF NOT EXISTS `identity_role` (
+    `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
+    `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    `identity_id`           BIGINT          NOT NULL,
+    `location_id`           BIGINT          NOT NULL,
+
+    PRIMARY KEY(`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_bin;
+
 CREATE TABLE IF NOT EXISTS `members` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
     `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -51,9 +62,18 @@ CREATE TABLE IF NOT EXISTS `managers` (
     `identity_id`           BIGINT          NOT NULL,
     `is_deleted`            BOOLEAN         NOT NULL DEFAULT FALSE,
 
-    PRIMARY KEY (`id`),
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_bin;
 
-    INDEX (`location_id`)
+CREATE TABLE IF NOT EXISTS `manager_location` (
+     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
+     `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    `manager_id`            BIGINT          NOT NULL,
+    `location_id`           BIGINT          NOT NULL,
+
+    PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_bin;
 
 CREATE TABLE IF NOT EXISTS `companies` (
