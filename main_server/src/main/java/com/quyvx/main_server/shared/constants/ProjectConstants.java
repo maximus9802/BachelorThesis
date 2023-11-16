@@ -6,4 +6,8 @@ public class ProjectConstants {
     }
 
     public static final String TIMEZONE = "Asia/Vietnam";
+
+    public static final String AUTHENTICATIONLOGIN = "LOGIN";
+
+    public static final String AUTHENTICATIONLOGOUT = "LOGOUT";
 }
