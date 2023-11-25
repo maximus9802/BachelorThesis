@@ -11,10 +11,12 @@ import java.util.Optional;
 @Repository
 public interface IdentityJpaRepository extends BaseJpaRepository<IdentityEntity, Long> {
 
-    @Query(value = "SELECT i.id, i.login_id AS loginId, i.password AS password, m.id as memberId " +
+    @Query(value = "SELECT i.id, i.login_id AS loginId, i.password AS password, m.id AS memberId, c.id AS companyId " +
             "FROM identities AS i " +
             "LEFT JOIN members AS m ON m.identity_id = i.id " +
             "LEFT JOIN companies AS c ON c.identity_id = i.id " +
-            "WHERE i.login_id = :loginId AND i.is_deleted = false", nativeQuery = true)
+            "WHERE i.login_id = :loginId AND i.is_deleted = false ",
+            nativeQuery = true)
     Optional<IdentityLogin> getIdentityByLoginId(@Param("loginId") String loginId);
+
 }

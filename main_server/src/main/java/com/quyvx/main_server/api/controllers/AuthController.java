@@ -10,31 +10,33 @@ import com.quyvx.main_server.api.dto.auth.LoginResDto;
 import com.quyvx.main_server.shared.exceptions.UnauthorizationException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Slf4j
 @AllArgsConstructor
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/auth")
 public class AuthController {
     private final IdentityQueries identityQueries;
     private final AuthService authService;
     private final Pipeline pipeline;
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public LoginResDto login(@RequestBody LoginRequestDto request) {
-        IdentityLogin identityLogin = identityQueries.getIdentityByLoginId(request.getLoginId())
-                .orElseThrow(UnauthorizationException::new);
-        if (!authService.comparePassword(identityLogin.getPassword(), request.getPassword())) {
-            throw  new UnauthorizationException();
+        Optional<IdentityLogin> identityLogin = identityQueries.getIdentityByLoginId(request.getLoginId());
+        if (!authService.comparePassword(identityLogin.get().getPassword(), request.getPassword())) {
+            throw new UnauthorizationException();
         }
-
         LoginCommand command = LoginCommand.builder()
-                .identityLogin(identityLogin)
+                .identityLogin(identityLogin.get())
                 .build();
         return pipeline.send(command);
+    }
+
+    @GetMapping("/get")
+    public Optional<IdentityLogin> get(@RequestParam("loginId") String loginId) {
+        return identityQueries.getIdentityByLoginId(loginId);
     }
 }

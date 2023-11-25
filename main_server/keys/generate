@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+openssl genrsa -out jwt.pem 4096
+openssl rsa -pubout -in jwt.pem -out jwt.pub.pem
+
+# convert private key to pkcs8 format in order to import it from Java
+openssl pkcs8 -topk8 -in jwt.pem -inform pem -out jwt_pkcs8.pem -outform pem -nocrypt

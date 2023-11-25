@@ -2,12 +2,14 @@ package com.quyvx.main_server.shared.utils;
 
 import com.quyvx.main_server.shared.constants.ProjectConstants;
 import com.quyvx.main_server.shared.exceptions.BadRequestException;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
+@Slf4j
 public class TimeUtils {
     private TimeUtils() {
 
@@ -43,6 +45,7 @@ public class TimeUtils {
     }
 
     public static LocalDateTime now() {
+        log.info("true");
         return LocalDateTime.now().atZone(ZoneId.of(ProjectConstants.TIMEZONE)).toLocalDateTime();
     }
 
