@@ -34,9 +34,4 @@ public class AuthController {
                 .build();
         return pipeline.send(command);
     }
-
-    @GetMapping("/get")
-    public Optional<IdentityLogin> get(@RequestParam("loginId") String loginId) {
-        return identityQueries.getIdentityByLoginId(loginId);
-    }
 }
