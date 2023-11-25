@@ -2,12 +2,14 @@ package com.quyvx.main_server.shared.utils;
 
 import com.quyvx.main_server.shared.constants.ProjectConstants;
 import com.quyvx.main_server.shared.exceptions.BadRequestException;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
+@Slf4j
 public class TimeUtils {
     private TimeUtils() {
 
@@ -36,6 +38,10 @@ public class TimeUtils {
             return TimeUtils.now();
         }
         return time;
+    }
+
+    public static Long getMilliSecond(LocalDateTime time) {
+        return time.atZone(ZoneId.of(ProjectConstants.TIMEZONE)).toInstant().toEpochMilli();
     }
 
     public static Instant getInstant(LocalDateTime time) {

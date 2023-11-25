@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `identity_role` (
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `identity_id`           BIGINT          NOT NULL,
-    `location_id`           BIGINT          NOT NULL,
+    `role_id`           BIGINT          NOT NULL,
 
     PRIMARY KEY(`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_bin;
