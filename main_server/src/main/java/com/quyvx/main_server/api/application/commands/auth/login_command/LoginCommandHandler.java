@@ -32,9 +32,11 @@ public class LoginCommandHandler implements Command.Handler<LoginCommand, LoginR
         }
 
         String accessToken = tokenService.signAccessToken(command.getIdentityLogin().getId(), roles);
+        String refreshToken = tokenService.signRefreshToken();
+        log.info("----- LoginCommandHandler.handle: Identity {} login successfully", command.getIdentityLogin().getId());
         return LoginResDto.builder()
                 .accessToken(accessToken)
-                .refreshToken("")
+//                .refreshToken(refreshToken)
                 .build();
 
     }

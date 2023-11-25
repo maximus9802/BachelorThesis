@@ -25,13 +25,16 @@ public class AuthController {
 
     @PostMapping("/login")
     public LoginResDto login(@RequestBody LoginRequestDto request) {
-        Optional<IdentityLogin> identityLogin = identityQueries.getIdentityByLoginId(request.getLoginId());
-        if (!authService.comparePassword(identityLogin.get().getPassword(), request.getPassword())) {
+        IdentityLogin identityLogin = identityQueries.getIdentityByLoginId(request.getLoginId())
+                .orElseThrow(UnauthorizationException::new);
+        if (!authService.comparePassword(identityLogin.getPassword(), request.getPassword())) {
             throw new UnauthorizationException();
         }
         LoginCommand command = LoginCommand.builder()
-                .identityLogin(identityLogin.get())
+                .identityLogin(identityLogin)
                 .build();
         return pipeline.send(command);
     }
+
+    //refresh toke phase 2
 }

@@ -40,12 +40,15 @@ public class TimeUtils {
         return time;
     }
 
+    public static Long getMilliSecond(LocalDateTime time) {
+        return time.atZone(ZoneId.of(ProjectConstants.TIMEZONE)).toInstant().toEpochMilli();
+    }
+
     public static Instant getInstant(LocalDateTime time) {
         return time.atZone(ZoneId.of(ProjectConstants.TIMEZONE)).toInstant();
     }
 
     public static LocalDateTime now() {
-        log.info("true");
         return LocalDateTime.now().atZone(ZoneId.of(ProjectConstants.TIMEZONE)).toLocalDateTime();
     }
 

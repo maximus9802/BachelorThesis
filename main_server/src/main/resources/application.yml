@@ -19,4 +19,5 @@ jwt:
   keys:
     private_key_path: ${JWT_PRIVATE_KEY_PATH:classpath:/keys/jwtRS256.key}
     public_key_path: ${JWT_PUBLIC_KEY_PATH:classpath:/keys/jwtRS256.key.pub}
-    access_token_expiration: ${JWT_ACCESS_TOKEN_EXPIRE:60}
+  access_token_expiration: ${JWT_ACCESS_TOKEN_EXPIRE:60}
+  refresh_token_expiration: ${JWT_REFRESH_TOKEN_EXPIRE:10080}
