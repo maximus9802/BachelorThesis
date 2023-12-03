@@ -1,4 +1,4 @@
-package com.quyvx.main_server.infrastructure.config.security;
+package com.quyvx.main_server.shared.libs.application.security;
 
 import com.quyvx.main_server.api.application.services.token.TokenService;
 import com.quyvx.main_server.shared.libs.application.dto.UserDetail;

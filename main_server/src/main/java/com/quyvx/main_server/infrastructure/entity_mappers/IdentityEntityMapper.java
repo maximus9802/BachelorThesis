@@ -7,7 +7,7 @@ import com.quyvx.main_server.infrastructure.entities.IdentityEntity;
 import com.quyvx.main_server.infrastructure.entities.IdentityRoleEntity;
 import com.quyvx.main_server.shared.utils.TimeUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,19 +18,19 @@ public class IdentityEntityMapper {
     public IdentityEntity modelToEntity(Identity model) {
         IdentityEntity entity = IdentityEntity.builder()
                 .id(model.getId())
-                .createAt(model.getCreatedAt())
-                .updateAt(model.getUpdateAt())
+                .createAt(TimeUtils.nullOrNow(model.createAt))
+                .updateAt(TimeUtils.nullOrNow(model.updateAt))
                 .loginId(model.getLoginId())
                 .password(model.getPassword())
                 .isDeleted(model.getIsDeleted())
                 .build();
 
         List<IdentityRoleEntity> identityRoles = new ArrayList<>();
-        if (ObjectUtils.isEmpty(model.getIdentityRoles())) {
+        if (ObjectUtils.isNotEmpty(model.getIdentityRoles())) {
             identityRoles = model.getIdentityRoles().stream()
                     .map(identityRole -> (IdentityRoleEntity) IdentityRoleEntity.builder()
                             .id(identityRole.id)
-                            .createAt(TimeUtils.nullOrNow(identityRole.createdAt))
+                            .createAt(TimeUtils.nullOrNow(identityRole.createAt))
                             .updateAt(TimeUtils.nullOrNow(identityRole.updateAt))
                             .identity(entity)
                             .identityId(identityRole.getIdentityId())
@@ -50,10 +50,10 @@ public class IdentityEntityMapper {
         }
 
         List<IdentityRole> identityRoles = new ArrayList<>();
-        if (ObjectUtils.isEmpty(entity.getIdentityRoles())) {
+        if (ObjectUtils.isNotEmpty(entity.getIdentityRoles())) {
             identityRoles = entity.getIdentityRoles().stream()
                     .map(identityRole -> (IdentityRole) IdentityRole.builder()
-                            .createdAt(TimeUtils.nullOrNow(identityRole.getCreateAt()))
+                            .createAt(TimeUtils.nullOrNow(identityRole.getCreateAt()))
                             .updateAt(TimeUtils.nullOrNow(identityRole.getUpdateAt()))
                             .identityId(identityRole.getIdentityId())
                             .roleId(identityRole.getRoleId())
@@ -63,8 +63,8 @@ public class IdentityEntityMapper {
 
         return Identity.builder()
                 .id(entity.getId())
-                .createdAt(entity.getCreateAt())
-                .updateAt(entity.getUpdateAt())
+                .createAt(TimeUtils.nullOrNow(entity.getCreateAt()))
+                .updateAt(TimeUtils.nullOrNow(entity.getUpdateAt()))
                 .loginId(entity.getLoginId())
                 .password(entity.getPassword())
                 .identityRoles(identityRoles)

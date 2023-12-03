@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `roles` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `type`                  VARCHAR(20)     NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 
 CREATE TABLE IF NOT EXISTS `identities` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `login_id`              VARCHAR(50)     UNIQUE,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `identities` (
 
 CREATE TABLE IF NOT EXISTS `identity_role` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `identity_id`           BIGINT          NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `identity_role` (
 
 CREATE TABLE IF NOT EXISTS `members` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `identity_id`           BIGINT          NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `members` (
 
 CREATE TABLE IF NOT EXISTS `managers` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `identity_id`           BIGINT          NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `managers` (
 
 CREATE TABLE IF NOT EXISTS `manager_location` (
      `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-     `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+     `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
      `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `manager_id`            BIGINT          NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `manager_location` (
 
 CREATE TABLE IF NOT EXISTS `companies` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `identity_id`           BIGINT          NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `companies` (
 
 CREATE TABLE IF NOT EXISTS `locations` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `company_id`            BIGINT          NOT NULL,
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `locations` (
 
 CREATE TABLE IF NOT EXISTS `cameras` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `location_id`           BIGINT          NOT NULL,
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `cameras` (
 
 CREATE TABLE IF NOT EXISTS `authentication_type` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `type`                  VARCHAR(20)     NOT NULL,
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `authentication_type` (
 
 CREATE TABLE IF NOT EXISTS `authentication_logs` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `camera_id`             BIGINT          NOT NULL,
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `authentication_logs` (
 
 CREATE TABLE IF NOT EXISTS `authentication_history` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `authen_login_id`       BIGINT          NOT NULL,
@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `authentication_history` (
 
 CREATE TABLE IF NOT EXISTS `status_parking` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `created_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `type`                  VARCHAR(20)     NOT NULL,

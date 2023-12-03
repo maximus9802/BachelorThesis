@@ -1,7 +1,7 @@
 package com.quyvx.main_server.infrastructure.config.security;
 
-import com.quyvx.main_server.api.application.services.token.TokenService;
 import com.quyvx.main_server.shared.exceptions.ExceptionHandlerFilter;
+import com.quyvx.main_server.shared.libs.application.security.AuthorizationFilter;
 import com.quyvx.main_server.shared.libs.infrastructure.services.SharedTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;

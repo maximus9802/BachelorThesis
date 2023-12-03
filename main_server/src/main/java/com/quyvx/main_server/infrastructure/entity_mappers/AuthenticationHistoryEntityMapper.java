@@ -2,6 +2,7 @@ package com.quyvx.main_server.infrastructure.entity_mappers;
 
 import com.quyvx.main_server.domain.aggregate_models.authentication_history_aggregate.AuthenticationHistory;
 import com.quyvx.main_server.infrastructure.entities.AuthenticationHistoryEntity;
+import com.quyvx.main_server.shared.utils.TimeUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -11,8 +12,8 @@ public class AuthenticationHistoryEntityMapper {
     public AuthenticationHistoryEntity modelToEntity(AuthenticationHistory model) {
         return AuthenticationHistoryEntity.builder()
                 .id(model.getId())
-                .createAt(model.getCreatedAt())
-                .updateAt(model.getUpdateAt())
+                .createAt(TimeUtils.nullOrNow(model.createAt))
+                .updateAt(TimeUtils.nullOrNow(model.updateAt))
                 .authenLoginId(model.getAuthenLoginId())
                 .authenLogoutId(model.getAuthenLogoutId())
                 .statusParkingId(model.getStatusParkingId())
@@ -26,8 +27,8 @@ public class AuthenticationHistoryEntityMapper {
 
         return AuthenticationHistory.builder()
                 .id(entity.getId())
-                .createdAt(entity.getCreateAt())
-                .updateAt(entity.getUpdateAt())
+                .createAt(TimeUtils.nullOrNow(entity.getCreateAt()))
+                .updateAt(TimeUtils.nullOrNow(entity.getUpdateAt()))
                 .authenLoginId(entity.getAuthenLoginId())
                 .authenLogoutId(entity.getAuthenLogoutId())
                 .statusParkingId(entity.getStatusParkingId())

@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "identites")
+@Table(name = "identities")
 public class IdentityEntity extends BaseEntity {
     private String loginId;
     private String password;

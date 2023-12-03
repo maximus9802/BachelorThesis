@@ -1,7 +1,7 @@
 INSERT INTO `roles` (`type`, `name`)
 VALUES ('USER', 'User'),
        ('MANAGER', 'Manager'),
-       ('ADMIN', 'Admin'),
+       ('COMPANY', 'Company'),
        ('ADMIN_ADMIN', 'Root Admin');
 
 INSERT INTO `authentication_type` (`type`, `name`)
