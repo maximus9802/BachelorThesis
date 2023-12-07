@@ -5,8 +5,8 @@ import com.quyvx.main_server.domain.aggregate_models.manager_aggregate.ManagerLo
 import com.quyvx.main_server.infrastructure.entities.ManagerEntity;
 import com.quyvx.main_server.infrastructure.entities.ManagerLocationEntity;
 import com.quyvx.main_server.shared.utils.TimeUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +19,12 @@ public class ManagerEntityMapper {
                 .id(model.getId())
                 .createAt(TimeUtils.nullOrNow(model.createAt))
                 .updateAt(TimeUtils.nullOrNow(model.updateAt))
-                .identityId(model.getIdentityId())
+                .memberId(model.getMemberId())
                 .isDeleted(model.getIsDeleted())
                 .build();
 
         List<ManagerLocationEntity> managerLocations = new ArrayList<>();
-        if (ObjectUtils.isEmpty(model.getManagerLocations())) {
+        if (ObjectUtils.isNotEmpty(model.getManagerLocations())) {
             managerLocations = model.getManagerLocations().stream()
                     .map(managerLocation -> (ManagerLocationEntity) ManagerLocationEntity.builder()
                             .id(managerLocation.id)
@@ -36,6 +36,7 @@ public class ManagerEntityMapper {
                             .build())
                     .collect(Collectors.toList());
         }
+        entity.setManagerLocations(managerLocations);
 
         return entity;
     }
@@ -44,7 +45,7 @@ public class ManagerEntityMapper {
         if (ObjectUtils.isEmpty(entity)) return null;
 
         List<ManagerLocation> managerLocations = new ArrayList<>();
-        if (ObjectUtils.isEmpty(entity.getManagerLocations())) {
+        if (ObjectUtils.isNotEmpty(entity.getManagerLocations())) {
             managerLocations = entity.getManagerLocations().stream()
                     .map(managerLocation -> (ManagerLocation) ManagerLocation.builder()
                             .id(managerLocation.getId())
@@ -60,7 +61,7 @@ public class ManagerEntityMapper {
                 .id(entity.getId())
                 .createAt(TimeUtils.nullOrNow(entity.getCreateAt()))
                 .updateAt(TimeUtils.nullOrNow(entity.getUpdateAt()))
-                .identityId(entity.getIdentityId())
+                .memberId(entity.getMemberId())
                 .managerLocations(managerLocations)
                 .isDeleted(entity.getIsDeleted())
                 .build();

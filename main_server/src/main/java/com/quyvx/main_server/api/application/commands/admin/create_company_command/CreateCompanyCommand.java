@@ -20,4 +20,6 @@ public class CreateCompanyCommand implements Command<Company> {
 
     private String phoneNumber;
 
+    private String permanentLink;
+
 }

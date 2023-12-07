@@ -32,8 +32,23 @@ public class IdentityService {
                 .loginId(loginId)
                 .password(password)
                 .identityRoles(List.of(role))
-                .createAt(TimeUtils.now())
-                .updateAt(TimeUtils.now())
+                .isDeleted(false)
+                .build();
+
+        Identity savedIdentity = iIdentityRepository.save(identity);
+        log.info("----- Identity id: {} - loginId: {} is created", savedIdentity.id, savedIdentity.getLoginId());
+        return savedIdentity.getId();
+    }
+
+    public Long createManager(String loginId, String password) {
+        IdentityRole role = IdentityRole.builder()
+                .roleId(roleQueriesService.getRoleIdByRoleType(RoleEnum.MANAGER.getValue()))
+                .build();
+
+        Identity identity = Identity.builder()
+                .loginId(loginId)
+                .password(password)
+                .identityRoles(List.of(role))
                 .isDeleted(false)
                 .build();
 

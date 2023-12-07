@@ -20,7 +20,7 @@ public class AdminController {
     private final SecurityService securityService;
 
     @PostMapping("/register_company")
-    @PreAuthorize("hasAnyAuthority('ADMIN_ADMIN')")
+//    @PreAuthorize("hasAnyAuthority('USER')")
     public Company registerCompany(@RequestBody CreateCompanyReqDto request) {
         UserDetail userDetail = securityService.getUserDetail();
         CreateCompanyCommand command = CreateCompanyCommand.builder()
@@ -29,6 +29,7 @@ public class AdminController {
                 .companyName(request.getCompanyName())
                 .address(request.getAddress())
                 .phoneNumber(request.getPhoneNumber())
+                .permanentLink(request.getPermanentLink())
                 .build();
         log.info("----- Identity {} is creating company that has loginId {}", userDetail.getId(), request.getLoginId());
         return pipeline.send(command);

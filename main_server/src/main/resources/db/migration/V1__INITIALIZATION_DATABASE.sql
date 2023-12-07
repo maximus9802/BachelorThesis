@@ -56,10 +56,10 @@ CREATE TABLE IF NOT EXISTS `members` (
 
 CREATE TABLE IF NOT EXISTS `managers` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    `identity_id`           BIGINT          NOT NULL,
+    `member_id`             BIGINT          NOT NULL,
     `is_deleted`            BOOLEAN         NOT NULL DEFAULT FALSE,
 
     PRIMARY KEY (`id`)
@@ -78,13 +78,14 @@ CREATE TABLE IF NOT EXISTS `manager_location` (
 
 CREATE TABLE IF NOT EXISTS `companies` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `identity_id`           BIGINT          NOT NULL,
     `company_name`          VARCHAR(255)    NOT NULL,
     `address`               VARCHAR(255),
     `phone_number`          VARCHAR(20),
+    `permanent_link`        VARCHAR(20)     NOT NULL UNIQUE,
     `is_deleted`            BOOLEAN         NOT NULL DEFAULT FALSE,
 
     PRIMARY KEY (`id`)
@@ -92,12 +93,13 @@ CREATE TABLE IF NOT EXISTS `companies` (
 
 CREATE TABLE IF NOT EXISTS `locations` (
     `id`                    BIGINT          NOT NULL AUTO_INCREMENT,
-    `create_at`            TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `create_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_at`             TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     `company_id`            BIGINT          NOT NULL,
     `name`                  VARCHAR(50)     NOT NULL,
     `address`               VARCHAR(50)     NOT NULL,
+    `permanent_link`        VARCHAR(20)     NOT NULL,
     `is_deleted`            BOOLEAN         NOT NULL DEFAULT FALSE,
 
     PRIMARY KEY (`id`),

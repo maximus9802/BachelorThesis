@@ -27,8 +27,7 @@ public class CreateCompanyCommandHandler implements Command.Handler<CreateCompan
                 .companyName(command.getCompanyName())
                 .phoneNumber(command.getPhoneNumber())
                 .address(command.getAddress())
-                .createAt(TimeUtils.now())
-                .updateAt(TimeUtils.now())
+                .permanentLink(command.getPermanentLink())
                 .isDeleted(false)
                 .build();
         Company savedCompany = companyRepository.save(company);

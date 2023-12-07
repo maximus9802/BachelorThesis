@@ -10,5 +10,6 @@ public class Location extends EntityAggregateRoot {
     private Long companyId;
     private String name;
     private String address;
+    private String permanentLink;
     private Boolean isDeleted;
 }

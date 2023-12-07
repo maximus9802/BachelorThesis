@@ -17,6 +17,7 @@ public class LocationEntityMapper {
                 .companyId(model.getCompanyId())
                 .address(model.getAddress())
                 .name(model.getName())
+                .permanentLink(model.getPermanentLink())
                 .isDeleted(model.getIsDeleted())
                 .build();
     }
@@ -31,6 +32,7 @@ public class LocationEntityMapper {
                 .companyId(entity.getCompanyId())
                 .address(entity.getAddress())
                 .name(entity.getName())
+                .permanentLink(entity.getPermanentLink())
                 .isDeleted(entity.getIsDeleted())
                 .build();
     }
