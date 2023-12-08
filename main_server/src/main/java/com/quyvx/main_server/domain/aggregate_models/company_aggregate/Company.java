@@ -11,5 +11,6 @@ public class Company extends EntityAggregateRoot {
     private String companyName;
     private String phoneNumber;
     private String address;
+    private String permanentLink;
     private Boolean isDeleted;
 }

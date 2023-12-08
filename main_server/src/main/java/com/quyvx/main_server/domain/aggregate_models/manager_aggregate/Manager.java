@@ -9,7 +9,7 @@ import java.util.List;
 @SuperBuilder
 @Getter
 public class Manager extends EntityAggregateRoot {
-    private Long identityId;
+    private Long memberId;
     private Boolean isDeleted;
 
     private List<ManagerLocation> managerLocations;

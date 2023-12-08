@@ -19,5 +19,6 @@ public class LocationEntity extends BaseEntity{
     private Long companyId;
     private String name;
     private String address;
+    private String permanentLink;
     private Boolean isDeleted;
 }

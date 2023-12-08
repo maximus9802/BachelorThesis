@@ -9,16 +9,16 @@ import java.time.LocalDateTime;
 @Getter
 public class Entity {
     public Long id;
-    public LocalDateTime createdAt;
+    public LocalDateTime createAt;
     public LocalDateTime updateAt;
 
     public Entity(){
 
     }
 
-    public Entity(Long id, LocalDateTime createdAt, LocalDateTime updateAt){
+    public Entity(Long id, LocalDateTime createAt, LocalDateTime updateAt){
         this.id = id;
-        this.createdAt = createdAt;
+        this.createAt = createAt;
         this.updateAt = updateAt;
     }
 }

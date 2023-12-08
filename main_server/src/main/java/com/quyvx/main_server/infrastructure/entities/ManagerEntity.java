@@ -20,7 +20,7 @@ import java.util.List;
 @Entity
 @Table(name = "managers")
 public class ManagerEntity extends BaseEntity{
-    private Long identityId;
+    private Long memberId;
     private Boolean isDeleted;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manager", orphanRemoval = true)

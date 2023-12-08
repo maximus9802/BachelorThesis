@@ -20,5 +20,6 @@ public class CompanyEntity extends BaseEntity{
     private String companyName;
     private String address;
     private String phoneNumber;
+    private String permanentLink;
     private Boolean isDeleted;
 }
