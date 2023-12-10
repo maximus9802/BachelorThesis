@@ -25,5 +25,7 @@ public class CreateManagerReqDto {
 
     private String phoneNumber;
 
+    private Long companyId;
+
     private List<Long> locationsManage;
 }

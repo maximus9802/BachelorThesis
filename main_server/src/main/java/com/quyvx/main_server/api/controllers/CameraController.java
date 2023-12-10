@@ -2,6 +2,8 @@ package com.quyvx.main_server.api.controllers;
 
 import an.awesome.pipelinr.Pipeline;
 import com.quyvx.main_server.api.application.commands.camera.create_camera_command.CreateCameraCommand;
+import com.quyvx.main_server.api.application.services.company.CompanyService;
+import com.quyvx.main_server.api.application.services.location.LocationService;
 import com.quyvx.main_server.api.dto.camera.CreateCameraReqDto;
 import com.quyvx.main_server.shared.libs.application.dto.UserDetail;
 import com.quyvx.main_server.shared.libs.application.security.SecurityService;
@@ -20,12 +22,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class CameraController {
     private final Pipeline pipeline;
     private final SecurityService securityService;
+    private final CompanyService companyService;
+    private final LocationService locationService;
 
     @PostMapping("")
     @PreAuthorize("hasAnyAuthority('ADMIN_ADMIN', 'COMPANY')")
     public String createCamera(@RequestBody CreateCameraReqDto request){
         UserDetail userDetail = securityService.getUserDetail();
-        //check permission to create new camera
+        //check identity permission to access company
+        companyService.canAccessCompanyResource(userDetail, request.getCompanyId());
+        locationService.isLocationOfCompany(request.getCompanyId(), request.getLocationId());
         CreateCameraCommand command = CreateCameraCommand.builder()
                 .locationId(request.getLocationId())
                 .name(request.getName())
