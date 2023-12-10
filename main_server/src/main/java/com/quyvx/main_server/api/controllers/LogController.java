@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LogController {
 
     @RequestMapping("request")
-    public void requestLog() {
+    public void requestLogInParking() {
 
     }
 }

@@ -24,6 +24,7 @@ public class ManagerController {
     @PreAuthorize("hasAnyAuthority('COMPANY', 'ADMIN_ADMIN')")
     public void createManager(@RequestBody CreateManagerReqDto request) {
         UserDetail userDetail = securityService.getUserDetail();
+        //create service check if userDetail no have permission
         CreateManagerCommand command = CreateManagerCommand.builder()
                 .loginId(request.getLoginId())
                 .password(request.getPassword())

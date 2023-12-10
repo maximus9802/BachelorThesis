@@ -16,6 +16,7 @@ public class CameraEntityMapper {
                 .locationId(model.getLocationId())
                 .name(model.getName())
                 .typeAuthenId(model.getTypeAuthenId())
+                .cameraUUID(model.getCameraUUID())
                 .isDeleted(model.getIsDeleted())
                 .build();
     }
@@ -30,6 +31,7 @@ public class CameraEntityMapper {
                 .locationId(entity.getLocationId())
                 .typeAuthenId(entity.getTypeAuthenId())
                 .name(entity.getName())
+                .cameraUUID(entity.getCameraUUID())
                 .isDeleted(entity.getIsDeleted())
                 .build();
     }
