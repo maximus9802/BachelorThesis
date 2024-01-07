@@ -3,7 +3,6 @@ package com.quyvx.main_server.api.application.commands.manager.create_manager_co
 import an.awesome.pipelinr.Command;
 import com.quyvx.main_server.api.application.services.identity.IdentityService;
 import com.quyvx.main_server.api.application.services.manager.ManagerService;
-import com.quyvx.main_server.domain.aggregate_models.manager_aggregate.Manager;
 import com.quyvx.main_server.domain.aggregate_models.member_aggregate.Member;
 import com.quyvx.main_server.infrastructure.repositories.ManagerRepository;
 import com.quyvx.main_server.infrastructure.repositories.MemberRepository;

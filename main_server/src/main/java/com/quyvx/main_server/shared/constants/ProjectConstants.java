@@ -13,5 +13,13 @@ public class ProjectConstants {
 
     public static final long TOKENEXPIRATIONTIME = 60L;
 
+    public static final String STATUS_PARKING = "PARKING";
+
+    public static final String STATUS_PARKING_DONE = "DONE";
+
     public static final String SUBJECTNAME = "MAIN_SERVER";
+
+    public static final Long HANDLE_CODE_ERROR = 400L;
+
+    public static final Long HANDLE_CODE_ACCEPT = 200L;
 }

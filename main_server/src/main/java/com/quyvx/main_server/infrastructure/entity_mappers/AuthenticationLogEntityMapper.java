@@ -6,8 +6,6 @@ import com.quyvx.main_server.shared.utils.TimeUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import java.util.Objects;
-
 @Service
 public class AuthenticationLogEntityMapper {
 

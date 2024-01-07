@@ -4,10 +4,8 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.quyvx.main_server.shared.constants.RoleEnum;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import java.util.Collection;
 import java.util.List;
 
 @Getter

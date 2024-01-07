@@ -1,7 +1,6 @@
 package com.quyvx.main_server.infrastructure.jpa_repositories;
 
 import com.quyvx.main_server.infrastructure.entities.RoleEntity;
-import org.apache.el.util.Validation;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
