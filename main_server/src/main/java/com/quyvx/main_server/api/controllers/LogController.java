@@ -5,6 +5,7 @@ import com.quyvx.main_server.api.application.commands.log.login.CreateLogInParki
 import com.quyvx.main_server.api.application.commands.log.logout.CreateLogOutParkingCommand;
 import com.quyvx.main_server.api.application.models.camera.CameraInfo;
 import com.quyvx.main_server.api.application.services.camera.CameraService;
+import com.quyvx.main_server.api.application.services.log.LogService;
 import com.quyvx.main_server.api.dto.log.AuthenticationParkingReq;
 import com.quyvx.main_server.api.dto.log.AuthenticationParkingRes;
 import com.quyvx.main_server.shared.constants.ProjectConstants;
@@ -25,17 +26,19 @@ import java.util.Objects;
 public class LogController {
     private final CameraService cameraService;
     private final Pipeline pipeline;
-    private final GCSService gcsService;
+    private final LogService logService;
 
-    @PostMapping("/log")
-    public AuthenticationParkingRes requestParking(@RequestBody AuthenticationParkingReq request) {
-        CameraInfo cameraInfo = cameraService.checkCameraIsValid(request.getCameraUUID());
+    @PostMapping("/log/{cameraUUID}")
+    public AuthenticationParkingRes requestParking(@PathVariable("cameraUUID") String cameraUUID,
+                                                   @RequestParam("image") MultipartFile image,
+                                                   @RequestBody AuthenticationParkingReq request) {
+        CameraInfo cameraInfo = cameraService.checkCameraIsValid(cameraUUID);
+        String imageUrl = logService.uploadImageToCloud(image);
         Long handleCode = 0L;
         if (Objects.equals(cameraInfo.getTypeAuth(), ProjectConstants.AUTHENTICATION_LOGIN)) {
             CreateLogInParkingCommand command = CreateLogInParkingCommand.builder()
                     .cameraId(cameraInfo.getId())
-                    .imageUrl(request.getImageUrl())
-                    .licensePlate(request.getLicensePlate())
+                    .imageUrl(imageUrl)
                     .build();
             log.info("----- Camera id {} request login parking", cameraInfo.getId());
             if (ObjectUtils.isNotEmpty(pipeline.send(command))) handleCode = ProjectConstants.HANDLE_CODE_ACCEPT;
@@ -43,8 +46,7 @@ public class LogController {
         } else if (Objects.equals(cameraInfo.getTypeAuth(), ProjectConstants.AUTHENTICATION_LOGOUT)) {
             CreateLogOutParkingCommand command = CreateLogOutParkingCommand.builder()
                     .cameraId(cameraInfo.getId())
-                    .imageUrl(request.getImageUrl())
-                    .licensePlate(request.getLicensePlate())
+                    .imageUrl(imageUrl)
                     .build();
             log.info("----- Camera id {} request logout parking", cameraInfo.getId());
             if (ObjectUtils.isNotEmpty(pipeline.send(command))) handleCode = ProjectConstants.HANDLE_CODE_ACCEPT;
@@ -57,18 +59,4 @@ public class LogController {
 
     }
 
-    @PostMapping("/image/upload")
-    public String uploadImage(@RequestParam("file") MultipartFile file) {
-        try {
-            byte[] content = file.getBytes();
-            String fileName = file.getOriginalFilename();
-            String contentType = file.getContentType();
-
-            String imageUrl = gcsService.uploadImage(content, fileName, contentType);
-
-            return imageUrl;
-        } catch (IOException e) {
-            throw new RuntimeException("Error uploading image");
-        }
-    }
 }

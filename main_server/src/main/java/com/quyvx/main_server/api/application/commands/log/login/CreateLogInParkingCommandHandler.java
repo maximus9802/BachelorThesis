@@ -37,7 +37,7 @@ public class CreateLogInParkingCommandHandler implements Command.Handler<CreateL
         if (ObjectUtils.isEmpty(apiResponse.getLicensePlate())) {
             throw new BadRequestException("Can not detect license plate from image");
         }
-        log.info("----- Detect license plate in image {} is {}", command.getImageUrl(), apiResponse);
+        log.info("----- Detect license plate in image {} is {}", command.getImageUrl(), ProjectConstants.LICENSE_PLATE);
         //create authentication log
         AuthenticationLog authenticationLog = AuthenticationLog.builder()
                 .cameraId(command.getCameraId())
@@ -51,7 +51,9 @@ public class CreateLogInParkingCommandHandler implements Command.Handler<CreateL
         //create authentication history
         AuthenticationHistory authenticationHistory = AuthenticationHistory.builder()
                 .authenLoginId(savedAuthenticationLog.getId())
-                .licensePlateCode(command.getLicensePlate())
+                //fake license plate
+//                .licensePlateCode(apiResponse.getLicensePlate())
+                .licensePlateCode(ProjectConstants.LICENSE_PLATE)
                 .statusParkingId(statusParkingQueriesService.findStatusParkingIdByType(ProjectConstants.STATUS_PARKING).get())
                 .build();
         AuthenticationHistory savedHistory = authenticationHistoryRepository.save(authenticationHistory);

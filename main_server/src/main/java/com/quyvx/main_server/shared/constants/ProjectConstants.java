@@ -22,4 +22,6 @@ public class ProjectConstants {
     public static final Long HANDLE_CODE_ERROR = 400L;
 
     public static final Long HANDLE_CODE_ACCEPT = 200L;
+
+    public static final String LICENSE_PLATE = "15B1-12472";
 }
