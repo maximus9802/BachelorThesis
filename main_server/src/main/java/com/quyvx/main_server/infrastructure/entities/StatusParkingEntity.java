@@ -1,6 +1,5 @@
 package com.quyvx.main_server.infrastructure.entities;
 
-import com.quyvx.main_server.infrastructure.entities.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;

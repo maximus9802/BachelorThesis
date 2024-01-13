@@ -1,8 +1,7 @@
 package com.quyvx.main_server.shared.libs.application.security;
 
-import com.quyvx.main_server.api.application.services.token.TokenService;
-import com.quyvx.main_server.shared.libs.application.dto.UserDetail;
 import com.quyvx.main_server.shared.exceptions.UnauthorizationException;
+import com.quyvx.main_server.shared.libs.application.dto.UserDetail;
 import com.quyvx.main_server.shared.libs.infrastructure.services.SharedTokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

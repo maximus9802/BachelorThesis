@@ -84,6 +84,11 @@ public class TimeUtils {
         }
     }
 
+    public static Long calculateDurationInMinutes(LocalDateTime startTime, LocalDateTime endTime) {
+        Duration duration = Duration.between(startTime, endTime);
+        return duration.toMinutes();
+    }
+
     public static String stringifyTime(LocalDate date, int hour, int minute, int second) {
         String template = "%sT%s:%s:%s";
         return String.format(template, date,

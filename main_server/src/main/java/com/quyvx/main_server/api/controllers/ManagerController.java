@@ -2,6 +2,7 @@ package com.quyvx.main_server.api.controllers;
 
 import an.awesome.pipelinr.Pipeline;
 import com.quyvx.main_server.api.application.commands.manager.create_manager_command.CreateManagerCommand;
+import com.quyvx.main_server.api.application.services.company.CompanyService;
 import com.quyvx.main_server.api.dto.manager.CreateManagerReqDto;
 import com.quyvx.main_server.shared.libs.application.dto.UserDetail;
 import com.quyvx.main_server.shared.libs.application.security.SecurityService;
@@ -19,11 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class ManagerController {
     private final Pipeline pipeline;
     private final SecurityService securityService;
+    private final CompanyService companyService;
 
     @RequestMapping("/create_manager")
     @PreAuthorize("hasAnyAuthority('COMPANY', 'ADMIN_ADMIN')")
     public void createManager(@RequestBody CreateManagerReqDto request) {
         UserDetail userDetail = securityService.getUserDetail();
+        //create service check if userDetail no have permission
+        companyService.canAccessCompanyResource(userDetail, request.getCompanyId());
         CreateManagerCommand command = CreateManagerCommand.builder()
                 .loginId(request.getLoginId())
                 .password(request.getPassword())

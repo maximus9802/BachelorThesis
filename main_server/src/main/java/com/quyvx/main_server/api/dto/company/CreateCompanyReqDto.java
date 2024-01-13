@@ -1,6 +1,6 @@
 package com.quyvx.main_server.api.dto.company;
 
-import lombok.*;
+import lombok.Getter;
 
 @Getter
 public class CreateCompanyReqDto {

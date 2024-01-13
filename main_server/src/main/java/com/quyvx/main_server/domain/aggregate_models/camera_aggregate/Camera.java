@@ -10,5 +10,6 @@ public class Camera extends EntityAggregateRoot {
     private Long locationId;
     private String name;
     private Long typeAuthenId;
+    private String cameraUUID;
     private Boolean isDeleted;
 }

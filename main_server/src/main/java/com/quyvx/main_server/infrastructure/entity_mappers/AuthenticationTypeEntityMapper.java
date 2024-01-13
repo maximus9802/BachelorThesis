@@ -6,8 +6,6 @@ import com.quyvx.main_server.shared.utils.TimeUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import java.awt.image.TileObserver;
-
 @Service
 public class AuthenticationTypeEntityMapper {
 

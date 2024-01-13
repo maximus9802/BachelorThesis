@@ -115,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `cameras` (
     `location_id`           BIGINT          NOT NULL,
     `name`                  VARCHAR(20)     NOT NULL,
     `type_authen_id`        BIGINT          NOT NULL,
+    `camera_uuid`           VARCHAR(50)     NOT NULL,
     `is_deleted`            BOOLEAN         NOT NULL DEFAULT FALSE,
 
     PRIMARY KEY (`id`),

@@ -2,6 +2,7 @@ package com.quyvx.main_server.api.controllers;
 
 import an.awesome.pipelinr.Pipeline;
 import com.quyvx.main_server.api.application.commands.location.create_location_command.CreateLocationCommand;
+import com.quyvx.main_server.api.application.services.company.CompanyService;
 import com.quyvx.main_server.api.dto.location.CreateLocationReqDto;
 import com.quyvx.main_server.domain.aggregate_models.location_aggregate.Location;
 import com.quyvx.main_server.shared.libs.application.dto.UserDetail;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LocationController {
     private final Pipeline pipeline;
     private final SecurityService securityService;
+    private final CompanyService companyService;
 
     @RequestMapping("/new_location")
     @PreAuthorize("hasAnyAuthority('ADMIN_ADMIN', 'COMPANY')")
@@ -27,7 +29,7 @@ public class LocationController {
         UserDetail userDetail = securityService.getUserDetail();
 
         //check permission to create new location
-
+        companyService.canAccessCompanyResource(userDetail, request.getCompanyId());
         CreateLocationCommand command = CreateLocationCommand.builder()
                 .companyId(request.getCompanyId())
                 .locationName(request.getLocationName())
