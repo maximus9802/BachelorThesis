@@ -22,6 +22,7 @@ public class LogService {
             String contentType = image.getContentType();
 
             String imageUrl = gcsService.uploadImage(content, fileName, contentType);
+            log.info("----- Upload image {} to google cloud storage successfully!", fileName);
             return imageUrl;
         }  catch (IOException e) {
             throw new RuntimeException("Error uploading image");

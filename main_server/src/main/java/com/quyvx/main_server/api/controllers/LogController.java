@@ -28,10 +28,9 @@ public class LogController {
     private final Pipeline pipeline;
     private final LogService logService;
 
-    @PostMapping("/log/{cameraUUID}")
-    public AuthenticationParkingRes requestParking(@PathVariable("cameraUUID") String cameraUUID,
-                                                   @RequestParam("image") MultipartFile image,
-                                                   @RequestBody AuthenticationParkingReq request) {
+    @PostMapping("/log")
+    public AuthenticationParkingRes requestParking(@RequestParam("image") MultipartFile image,
+                                                   @RequestParam("cameraUUID") String cameraUUID ) {
         CameraInfo cameraInfo = cameraService.checkCameraIsValid(cameraUUID);
         String imageUrl = logService.uploadImageToCloud(image);
         Long handleCode = 0L;
@@ -41,7 +40,10 @@ public class LogController {
                     .imageUrl(imageUrl)
                     .build();
             log.info("----- Camera id {} request login parking", cameraInfo.getId());
-            if (ObjectUtils.isNotEmpty(pipeline.send(command))) handleCode = ProjectConstants.HANDLE_CODE_ACCEPT;
+            if (ObjectUtils.isNotEmpty(pipeline.send(command))) {
+                handleCode = ProjectConstants.HANDLE_CODE_ACCEPT;
+                log.info("----- Authenticate successfully!");
+            }
             else handleCode = ProjectConstants.HANDLE_CODE_ERROR;
         } else if (Objects.equals(cameraInfo.getTypeAuth(), ProjectConstants.AUTHENTICATION_LOGOUT)) {
             CreateLogOutParkingCommand command = CreateLogOutParkingCommand.builder()
@@ -49,12 +51,14 @@ public class LogController {
                     .imageUrl(imageUrl)
                     .build();
             log.info("----- Camera id {} request logout parking", cameraInfo.getId());
-            if (ObjectUtils.isNotEmpty(pipeline.send(command))) handleCode = ProjectConstants.HANDLE_CODE_ACCEPT;
+            if (ObjectUtils.isNotEmpty(pipeline.send(command))) {
+                handleCode = ProjectConstants.HANDLE_CODE_ACCEPT;
+                log.info("----- Authenticate successfully!");
+            }
             else handleCode = ProjectConstants.HANDLE_CODE_ERROR;
         }
         return  AuthenticationParkingRes.builder()
                 .handleCode(handleCode)
-                .licensePlate(request.getLicensePlate())
                 .build();
 
     }
