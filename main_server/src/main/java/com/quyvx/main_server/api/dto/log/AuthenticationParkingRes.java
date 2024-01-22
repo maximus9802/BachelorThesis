@@ -9,5 +9,4 @@ import lombok.Setter;
 @Setter
 public class AuthenticationParkingRes {
     private Long handleCode;
-    private String licensePlate;
 }

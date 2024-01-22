@@ -11,5 +11,4 @@ import lombok.*;
 public class CreateLogInParkingCommand implements Command<Long> {
     private Long cameraId;
     private String imageUrl;
-    private String licensePlate;
 }
