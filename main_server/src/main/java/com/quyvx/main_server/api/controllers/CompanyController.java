@@ -1,6 +1,7 @@
 package com.quyvx.main_server.api.controllers;
 
 import an.awesome.pipelinr.Pipeline;
+import com.quyvx.main_server.api.application.commands.company.delete_company_command.DeleteCompanyCommand;
 import com.quyvx.main_server.api.application.commands.company.update_company_command.UpdateCompanyCommand;
 import com.quyvx.main_server.api.application.models.company.CompanySummary;
 import com.quyvx.main_server.api.application.queries.company.ICompanyQueriesService;
@@ -81,5 +82,10 @@ public class CompanyController {
     public void deleteCompany(@PathVariable("companyId") Long companyId) {
         UserDetail userDetail = securityService.getUserDetail();
         companyService.canAccessCompanyResource(userDetail, companyId);
+        DeleteCompanyCommand command = DeleteCompanyCommand.builder()
+                .companyId(companyId)
+                .build();
+        log.info("----- CompanyController: Identity {} is deleting company {}", userDetail.getId(), companyId);
+        pipeline.send(command);
     }
 }

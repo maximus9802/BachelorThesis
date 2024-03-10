@@ -20,4 +20,9 @@ public class Identity extends EntityAggregateRoot {
         this.password = password;
         this.updateAt = TimeUtils.now();
     }
+
+    public void deleteIdentity() {
+        this.isDeleted = Boolean.TRUE;
+        this.updateAt = TimeUtils.now();
+    }
 }
