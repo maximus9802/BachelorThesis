@@ -4,4 +4,10 @@ public interface CompanySummary {
     Long getId();
 
     String getCompanyName();
+
+    String getAddress();
+
+    String getPhoneNumber();
+
+    String getPermanentLink();
 }
