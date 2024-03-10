@@ -1,6 +1,7 @@
 package com.quyvx.main_server.domain.aggregate_models.identity_aggregate;
 
 import com.quyvx.main_server.domain.aggregate_models.EntityAggregateRoot;
+import com.quyvx.main_server.shared.utils.TimeUtils;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
@@ -13,4 +14,10 @@ public class Identity extends EntityAggregateRoot {
     private String password;
     private Boolean isDeleted;
     private List<IdentityRole> identityRoles;
+
+    public void updateIdentity(String loginId, String password) {
+        this.loginId = loginId;
+        this.password = password;
+        this.updateAt = TimeUtils.now();
+    }
 }

@@ -3,7 +3,7 @@ package com.quyvx.main_server.api.dto.company;
 import lombok.Getter;
 
 @Getter
-public class CreateCompanyReqDto {
+public class CreateUpdateCompanyReqDto {
 
     private String loginId;
 
@@ -14,6 +14,8 @@ public class CreateCompanyReqDto {
     private String address;
 
     private String phoneNumber;
+
+    private String email;
 
     private String permanentLink;
 }

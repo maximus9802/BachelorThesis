@@ -2,7 +2,7 @@ package com.quyvx.main_server.api.controllers;
 
 import an.awesome.pipelinr.Pipeline;
 import com.quyvx.main_server.api.application.commands.admin.create_company_command.CreateCompanyCommand;
-import com.quyvx.main_server.api.dto.company.CreateCompanyReqDto;
+import com.quyvx.main_server.api.dto.company.CreateUpdateCompanyReqDto;
 import com.quyvx.main_server.domain.aggregate_models.company_aggregate.Company;
 import com.quyvx.main_server.shared.libs.application.dto.UserDetail;
 import com.quyvx.main_server.shared.libs.application.security.SecurityService;
@@ -23,7 +23,7 @@ public class AdminController {
 
     @PostMapping("/register_company")
 //    @PreAuthorize("hasAnyAuthority('USER')")
-    public Company registerCompany(@RequestBody CreateCompanyReqDto request) {
+    public Company registerCompany(@RequestBody CreateUpdateCompanyReqDto request) {
         UserDetail userDetail = securityService.getUserDetail();
         CreateCompanyCommand command = CreateCompanyCommand.builder()
                 .loginId(request.getLoginId())
