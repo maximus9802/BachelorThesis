@@ -18,4 +18,9 @@ public class CompanyQueriesService implements ICompanyQueriesService {
     public List<CompanySummary> listAllCompany() {
         return null;
     }
+
+    @Override
+    public CompanySummary getDetailCompanyById(Long companyId) {
+        return companyJpaRepository.getDetailCompanyById(companyId);
+    }
 }

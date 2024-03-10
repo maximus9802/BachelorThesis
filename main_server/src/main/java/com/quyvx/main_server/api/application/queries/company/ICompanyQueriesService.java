@@ -7,4 +7,7 @@ import java.util.List;
 public interface ICompanyQueriesService {
 
     List<CompanySummary> listAllCompany();
+
+
+    CompanySummary getDetailCompanyById(Long companyId);
 }
