@@ -18,6 +18,7 @@ public class CompanyEntityMapper {
                 .companyName(model.getCompanyName())
                 .address(model.getAddress())
                 .phoneNumber(model.getPhoneNumber())
+                .email(model.getEmail())
                 .permanentLink(model.getPermanentLink())
                 .isDeleted(model.getIsDeleted())
                 .build();
@@ -34,6 +35,7 @@ public class CompanyEntityMapper {
                 .companyName(entity.getCompanyName())
                 .address(entity.getAddress())
                 .phoneNumber(entity.getPhoneNumber())
+                .email(entity.getEmail())
                 .permanentLink(entity.getPermanentLink())
                 .isDeleted(entity.getIsDeleted())
                 .build();

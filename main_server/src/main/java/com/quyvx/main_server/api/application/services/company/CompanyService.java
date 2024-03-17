@@ -5,6 +5,7 @@ import com.quyvx.main_server.infrastructure.repositories.CompanyRepository;
 import com.quyvx.main_server.shared.constants.RoleEnum;
 import com.quyvx.main_server.shared.exceptions.NotFoundException;
 import com.quyvx.main_server.shared.libs.application.dto.UserDetail;
+import com.quyvx.main_server.shared.libs.shared.helpers.MessageHelper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class CompanyService {
         }
         Optional<Company> company = companyRepository.findById(companyId);
         if (company.isEmpty()) {
-            throw new NotFoundException("not_found_company");
+            throw new NotFoundException(MessageHelper.getMessage("company_not_found"));
         }
         return Objects.equals(company.get().getIdentityId(), userDetail.getId());
     }

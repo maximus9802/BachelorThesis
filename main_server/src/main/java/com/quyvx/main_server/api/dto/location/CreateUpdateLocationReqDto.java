@@ -3,7 +3,7 @@ package com.quyvx.main_server.api.dto.location;
 import lombok.Getter;
 
 @Getter
-public class CreateLocationReqDto {
+public class CreateUpdateLocationReqDto {
     private Long companyId;
 
     private String locationName;
